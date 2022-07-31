@@ -4,7 +4,7 @@ MAINTAINER huhan<191830052@smail.nju.edu.cn>
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN echo 'Asia/Shanghai' >/etc/timezone
 
-ENV JAVA_OPTS '
+ENV JAVA_OPTS ''
 
 WORKDIR /app
 ADD target/demo001-0.0.1-SNAPSHOT.jar .
