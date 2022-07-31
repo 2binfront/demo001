@@ -12,17 +12,19 @@ spec:
       app: demo001
   template:
     metadata:
-      annotations:
-        prometheus.io/path: /actuator/prometheus
-        prometheus.io/port: "8080"
-        prometheus.io/scheme: http
-        prometheus.io/scrape: "true"
+#      annotations:
+#        prometheus.io/path: /actuator/prometheus
+#        prometheus.io/port: "8080"
+#        prometheus.io/scheme: http
+#        prometheus.io/scrape: "true"
       labels:
         app: demo001
     spec:
       containers:
         - image: harbor.edu.cn/nju11/demo001:{VERSION}
           name: demo001
+          ports:
+            - containerPort: 8080
       imagePullSecrets:
           - name: nju11
 ---
@@ -35,9 +37,9 @@ metadata:
     app: demo001
 spec:
   type: NodePort
-  ports:
-    - port: 8080
-      targetPort: 8080
-      nodePort: 31111
   selector:
     app: demo001
+  ports:
+    - nodePort: 30999 # host's port，范围限制，30000-32767
+      port: 8080 # service's port
+      targetPort: 8080 # target pod's port
