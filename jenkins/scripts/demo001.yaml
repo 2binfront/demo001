@@ -35,11 +35,9 @@ metadata:
     app: demo001
 spec:
   type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 31111
   selector:
     app: demo001
-  ports:
-    - name: tcp
-      nodePort: 30004
-      protocol: TCP
-      port: 8080
-      targetPort: 8080
